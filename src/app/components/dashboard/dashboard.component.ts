@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Transaction} from '../../Modal/Transaction';
 
@@ -10,10 +10,14 @@ import {Transaction} from '../../Modal/Transaction';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
   private readonly storageKey = "formStorage";
-  private transactions: Transaction[] = [];
+  transactions: Transaction[] = [];
+
+  ngOnInit() {
+    this.loadData();
+  }
 
   transactionForm: FormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -26,10 +30,14 @@ export class DashboardComponent {
   });
 
   onSubmit() {
-    const newForm = this.transactionForm.getRawValue();
+
+    const newForm = {
+      id: Date.now(),
+      ...this.transactionForm.getRawValue()
+    }
 
     this.transactions.push(newForm);
-    localStorage.setItem(this.storageKey, JSON.stringify(newForm));
+    localStorage.setItem(this.storageKey, JSON.stringify(this.transactions));
 
     console.log(this.transactions);
 
@@ -44,4 +52,18 @@ export class DashboardComponent {
     });
   }
 
+  private loadData() {
+    const data = JSON.parse(localStorage.getItem(this.storageKey) || 'null');
+    console.log(data);
+
+    if (!data) {
+      this.transactions = [];
+    } else if (Array.isArray(data)) {
+      this.transactions = data;
+    } else {
+      this.transactions = [data];
+    }
+
+    console.log(this.transactions);
+  }
 }

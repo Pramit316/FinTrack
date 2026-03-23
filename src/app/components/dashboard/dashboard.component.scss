@@ -9,6 +9,8 @@
   background: #f0f2f7;
   font-size: 14px;
   color: #111827;
+
+  box-sizing: border-box;
 }
 
 /* ── Header ── */
@@ -115,19 +117,17 @@
   min-height: 0;
 }
 
-.transaction,
-.category {
+.transaction {
   display: flex;
   flex-direction: column;
-  flex: 1;
   background: #ffffff;
   border-radius: 12px;
   padding: 14px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
   border: 1px solid #e4e7ef;
-  gap: 10px;
+  gap: 20px;
+  align-self: flex-start; /* ← add this */
 }
-
 .transaction h2 {
   margin: 0;
   font-size: 0.9rem;
@@ -147,7 +147,7 @@
 .fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -209,6 +209,7 @@ button:active {
 
 /* ── Bottom Section ── */
 .bottom-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -240,6 +241,7 @@ button:active {
   font-size: 0.82rem;
   color: #111827;
   width: 100%;
+  border: 1px solid #b1b1b1;
 }
 
 /* ── Recent Transactions ── */

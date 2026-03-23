@@ -66,99 +66,62 @@
 
     </div>
 
-    <div class="category">
-      <h2>Your Finance</h2>
-    </div>
-  </div>
+    <div class="bottom-section">
+      <div class="search-bar">
+        <input type="search" placeholder="search">
+        <select>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+        </select>
 
-  <div class="bottom-section">
-    <div class="search-bar">
-      <search></search>
-      <input>
-      <select>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-      </select>
+        <select>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+        </select>
 
-      <select>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-      </select>
+        <select>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+          <option value="">--Select Category--</option>
+        </select>
+        <button>Reset</button>
+      </div>
 
-      <select>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-        <option value="">--Select Category--</option>
-      </select>
-      <button>Reset</button>
-    </div>
-
-    <div class="recent-transaction">
-      <h3>Recent Transactions</h3>
-      <hr>
-      <table border="1" cellspacing="0" cellpadding="8">
-        <thead>
-        <tr>
-          <th>Date</th>
-          <th>Title</th>
-          <th>Category</th>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>2026-03-23</td>
-          <td>Salary</td>
-          <td>Income</td>
-          <td>Credit</td>
-          <td>$2,500</td>
-          <td>
-            <button>Edit</button>
-            <button>Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2026-03-22</td>
-          <td>Groceries</td>
-          <td>Food</td>
-          <td>Debit</td>
-          <td>$150</td>
-          <td>
-            <button>Edit</button>
-            <button>Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2026-03-21</td>
-          <td>Internet Bill</td>
-          <td>Utilities</td>
-          <td>Debit</td>
-          <td>$60</td>
-          <td>
-            <button>Edit</button>
-            <button>Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2026-03-20</td>
-          <td>Freelance Project</td>
-          <td>Income</td>
-          <td>Credit</td>
-          <td>$800</td>
-          <td>
-            <button>Edit</button>
-            <button>Delete</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="recent-transaction">
+        <h3>Recent Transactions</h3>
+        <hr>
+        <table border="1" cellspacing="0" cellpadding="8">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (item of transactions; track item.id) {
+              <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.transactionType }}</td>
+                <td>{{ item.amount }}</td>
+                <td>
+                  delete
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
