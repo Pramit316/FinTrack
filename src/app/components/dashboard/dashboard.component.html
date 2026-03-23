@@ -38,10 +38,29 @@
       <div class="fields">
         <input type="text" id="title" placeholder="Title">
         <input type="number" id="amount" placeholder="Amount">
-        <input type="number" id="amount" placeholder="Type">
-        <input type="number" id="amount" placeholder="Income">
-        <input type="text" id="category" placeholder="Category">
+        <select>
+          <option value="">Select Type</option>
+          <option value="cash">Cash</option>
+          <option value="mobile banking">Mobile Banking</option>
+          <option value="esewa">Esewa</option>
+          <option value="other">Other</option>
+        </select>
+
+        <select>
+          <option value="income"> Income </option>
+          <option value="expense"> Expense </option>
+        </select>
+
+        <select>
+          <option value=""> Select Category </option>
+          <option value="food">Food</option>
+          <option value="travel">Travel</option>
+          <option value="shopping">Shopping</option>
+          <option value="bills">Bills</option>
+          <option value="others">Others</option>
+        </select>
         <input type="date" id="date" placeholder="Date">
+        <input type="text" id="description"  placeholder="Description if any...">
       </div>
 
       <button>SUBMIT</button>
