@@ -1,107 +1,117 @@
-/* ----------------- Dashboard Layout ----------------- */
+/* ── Dashboard Layout ── */
 .dashboard-layout {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding: 20px;
-  gap: 20px;
-  font-family: 'Inter', Arial, sans-serif;
-  background-color: #f9fafb;
+  padding: 40px;
+  gap: 14px;
+  font-family: 'DM Sans', sans-serif;
+  background: #f0f2f7;
+  font-size: 14px;
+  color: #111827;
 }
 
-/* ----------------- Header ----------------- */
+/* ── Header ── */
 .header {
-  text-align: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2px 4px;
 }
 
 .header h1,
 .header h2 {
   margin: 0;
-  padding: 5px 0 0 0;
-  font-size: 2.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  letter-spacing: -0.02em;
+  color: #111827;
 }
 
 .header p {
-  margin-top: 8px;
-  color: #64748b;
-  font-size: 1rem;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 400;
 }
 
-/* ----------------- Top Cards ----------------- */
+/* ── Top Cards ── */
 .dashboard-top {
   display: flex;
-  gap: 20px;
+  gap: 40px;
   flex-wrap: wrap;
   background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  padding: 12px;
+  border: 1px solid #e4e7ef;
 }
 
 .card {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 2vw, 24px);
-  flex: 1 1 250px;
-  min-width: 220px;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 12px;
+  flex: 1 1 160px;
+  min-width: 140px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .card-icon {
-  font-size: clamp(32px, 4vw, 50px);
+  font-size: 1.5rem;
   flex-shrink: 0;
   line-height: 1;
-  color: inherit;
-}
-
-.card-content h1 {
-  margin: 6px 0 0 0;
-  font-size: 2rem;
-  font-weight: 700;
+  opacity: 0.9;
 }
 
 .card-content h2 {
-  margin: 0;
-  font-size: 1rem;
+  margin: 0 0 2px 0;
+  font-size: 0.7rem;
   font-weight: 600;
-  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
 }
 
-/* ----------------- Card Colors ----------------- */
+.card-content h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: 'DM Mono', monospace;
+  line-height: 1;
+}
+
+/* ── Card Colors ── */
 .card.balance {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
+  background: linear-gradient(130deg, #3b5bdb 0%, #1c3fc9 100%);
+  color: #fff;
 }
 
 .card.income {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: white;
+  background: linear-gradient(130deg, #0ca678 0%, #087f5b 100%);
+  color: #fff;
 }
 
 .card.expense {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
-  color: white;
+  background: linear-gradient(130deg, #e03131 0%, #b91c1c 100%);
+  color: #fff;
 }
 
-/* ----------------- Main Content ----------------- */
+/* ── Main Content ── */
 .main-content {
-  flex: 1 1 auto;
+  flex: 1;
   display: flex;
-  gap: 20px;
+  gap: 14px;
   min-height: 0;
 }
 
@@ -109,22 +119,36 @@
 .category {
   display: flex;
   flex-direction: column;
-  flex: 1 0 0;
-  min-height: 0;
+  flex: 1;
   background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-  gap: 15px;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  border: 1px solid #e4e7ef;
+  gap: 10px;
 }
 
-/* ----------------- Form Fields ----------------- */
+.transaction h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Dividers ── */
+.transaction hr,
+.recent-transaction hr {
+  border: none;
+  border-top: 1px solid #e4e7ef;
+  margin: 0;
+}
+
+/* ── Form Fields ── */
 .fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 8px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .fields input,
@@ -132,100 +156,139 @@
   width: 100%;
   outline: none;
   border-radius: 8px;
-  padding: 12px;
-  border: 1px solid #e2e8f0;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: #f9fafb;
+  padding: 8px 10px;
+  border: 1px solid #e4e7ef;
+  font-size: 0.82rem;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  background: #f0f2f7;
+  color: #111827;
+}
+
+.fields input::placeholder,
+.fields select::placeholder {
+  color: #9ca3af;
 }
 
 .fields input:focus,
 .fields select:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
-  background-color: #ffffff;
+  border-color: #3b5bdb;
+  box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.1);
+  background: #ffffff;
 }
 
-#title, #date , #description{
+#title, #date, #description {
   grid-column: span 2;
 }
 
-/* ----------------- Buttons ----------------- */
+/* ── Button ── */
 button {
-  text-align: center;
-  padding: 12px;
-  width: 100%;
-  border-radius: 10px;
-  background-color: #3b82f6;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: bold;
+  grid-column: span 2;
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: #3b5bdb;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.01em;
   border: none;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #2563eb;
-  transform: translateY(-2px);
+  background: #2f4dc0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 91, 219, 0.3);
 }
 
-/* ----------------- Bottom Section ----------------- */
+button:active {
+  transform: translateY(0);
+}
+
+/* ── Bottom Section ── */
 .bottom-section {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
-/* ----------------- Search Bar ----------------- */
+/* ── Search Bar ── */
 .search-bar {
   display: flex;
-  border: 1px solid #e2e8f0;
-  padding: 10px 12px;
-  gap: 10px;
-  border-radius: 12px;
-  background-color: #f9fafb;
+  align-items: center;
+  border: 1px solid #e4e7ef;
+  padding: 7px 10px;
+  gap: 8px;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 0.82rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-/* ----------------- Recent Transactions ----------------- */
+.search-bar:focus-within {
+  border-color: #3b5bdb;
+  box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.1);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #111827;
+  width: 100%;
+}
+
+/* ── Recent Transactions ── */
 .recent-transaction {
-  display: flex;
-  flex-direction: column;
   background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  border: 1px solid #e4e7ef;
+  padding: 14px;
 }
 
 .recent-transaction h3 {
-  margin: 0 0 12px 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #0f172a;
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
 }
 
-/* ----------------- Table ----------------- */
+/* ── Table ── */
 table {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   border-collapse: collapse;
   width: 100%;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-th, td {
-  text-align: left;
-  padding: 12px 16px;
-  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.82rem;
 }
 
 th {
-  background-color: #f3f4f6;
+  text-align: left;
+  padding: 7px 12px;
+  background: #f0f2f7;
   font-weight: 600;
-  color: #0f172a;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  border-bottom: 1px solid #e4e7ef;
 }
 
-tr:hover {
-  background-color: #f1f5f9;
+td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid #e4e7ef;
+  color: #111827;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #f0f2f7;
 }

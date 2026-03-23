@@ -35,10 +35,10 @@
       <h2>Add New Transaction</h2>
       <hr>
 
-      <div class="fields">
-        <input type="text" id="title" placeholder="Title">
-        <input type="number" id="amount" placeholder="Amount">
-        <select>
+      <form class="fields" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+        <input type="text" id="title" placeholder="Title" formControlName="title">
+        <input type="number" id="amount" placeholder="Amount" formControlName="amount">
+        <select formControlName="paymentMethod">
           <option value="">Select Type</option>
           <option value="cash">Cash</option>
           <option value="mobile banking">Mobile Banking</option>
@@ -46,12 +46,12 @@
           <option value="other">Other</option>
         </select>
 
-        <select>
+        <select formControlName="transactionType">
           <option value="income"> Income </option>
           <option value="expense"> Expense </option>
         </select>
 
-        <select>
+        <select formControlName="category">
           <option value=""> Select Category </option>
           <option value="food">Food</option>
           <option value="travel">Travel</option>
@@ -59,11 +59,11 @@
           <option value="bills">Bills</option>
           <option value="others">Others</option>
         </select>
-        <input type="date" id="date" placeholder="Date">
-        <input type="text" id="description"  placeholder="Description if any...">
-      </div>
+        <input type="date" id="date" placeholder="Date" formControlName="date">
+        <input type="text" id="description"  placeholder="Description if any..." formControlName="desctiption">
+        <button type="submit">SUBMIT</button>
+      </form>
 
-      <button>SUBMIT</button>
     </div>
 
     <div class="category">
