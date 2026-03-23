@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  transactionForm: FormGroup = new FormGroup({
+    title: new FormControl('', Validators.required),
+    amount: new FormControl(null, Validators.required),
+    type: new FormControl('',),
+    income: new FormControl(''),
+    category: new FormControl(''),
+  });
 }

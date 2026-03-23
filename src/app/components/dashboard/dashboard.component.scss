@@ -1,3 +1,4 @@
+/* ----------------- Dashboard Layout ----------------- */
 .dashboard-layout {
   height: 100%;
   display: flex;
@@ -5,20 +6,16 @@
   box-sizing: border-box;
   padding: 20px;
   gap: 20px;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #f9fafb;
 }
 
+/* ----------------- Header ----------------- */
 .header {
   text-align: center;
 }
 
-.header h1 {
-  margin: 0;
-  padding: 5px 0 0 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #0f172a;
-}
-
+.header h1,
 .header h2 {
   margin: 0;
   padding: 5px 0 0 0;
@@ -33,14 +30,14 @@
   font-size: 1rem;
 }
 
+/* ----------------- Top Cards ----------------- */
 .dashboard-top {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
@@ -54,46 +51,37 @@
   min-width: 220px;
   padding: 20px;
   border-radius: 20px;
-  box-sizing: border-box;
-  border: none;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
 }
 
 .card-icon {
   font-size: clamp(32px, 4vw, 50px);
   flex-shrink: 0;
-  margin: 0;
   line-height: 1;
-}
-
-.card-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.card-content h1,
-.card-content h2 {
-  margin: 0;
-}
-
-.card-content h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  opacity: 0.9;
+  color: inherit;
 }
 
 .card-content h1 {
-  margin-top: 6px;
+  margin: 6px 0 0 0;
   font-size: 2rem;
   font-weight: 700;
 }
 
+.card-content h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* ----------------- Card Colors ----------------- */
 .card.balance {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: white;
@@ -105,10 +93,11 @@
 }
 
 .card.expense {
-  background: linear-gradient(135deg, #e65b6f, #dd2b2b);
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
   color: white;
 }
 
+/* ----------------- Main Content ----------------- */
 .main-content {
   flex: 1 1 auto;
   display: flex;
@@ -122,88 +111,121 @@
   flex-direction: column;
   flex: 1 0 0;
   min-height: 0;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
+  background: #ffffff;
+  border-radius: 20px;
   padding: 20px;
-  box-sizing: border-box;
-  align-items: center;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  gap: 15px;
 }
 
-.transaction hr {
-  width: 100%;
-}
-
+/* ----------------- Form Fields ----------------- */
 .fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-
   width: 100%;
-  padding: 20px;
-
   box-sizing: border-box;
 }
 
-.fields input {
+.fields input,
+.fields select {
+  width: 100%;
   outline: none;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #f9fafb;
+}
+
+.fields input:focus,
+.fields select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+  background-color: #ffffff;
 }
 
 #title, #date {
   grid-column: span 2;
 }
 
+/* ----------------- Buttons ----------------- */
 button {
   text-align: center;
-  padding: 10px;
-  width: 80%;
+  padding: 12px;
+  width: 100%;
   border-radius: 10px;
-  background-color: #5ca8ff;
-  color: #fdfdfd;
+  background-color: #3b82f6;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: bold;
+  border: none;
+  transition: background-color 0.2s, transform 0.2s;
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #6cb2ff;
+  background-color: #2563eb;
   transform: translateY(-2px);
 }
 
-.bottom-section{
+/* ----------------- Bottom Section ----------------- */
+.bottom-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
-.search-bar{
+/* ----------------- Search Bar ----------------- */
+.search-bar {
   display: flex;
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
   gap: 10px;
-  border-radius: 10px;
-  background-color: white;
+  border-radius: 12px;
+  background-color: #f9fafb;
 }
 
-
-.recent-transaction{
+/* ----------------- Recent Transactions ----------------- */
+.recent-transaction {
   display: flex;
   flex-direction: column;
-  border:  1px solid black;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  padding: 20px;
 }
 
-.recent-transaction h3{
-  margin: 0;
+.recent-transaction h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
 }
 
+/* ----------------- Table ----------------- */
 table {
-  font-family: arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 th, td {
-  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
 }
 
+th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+tr:hover {
+  background-color: #f1f5f9;
+}
