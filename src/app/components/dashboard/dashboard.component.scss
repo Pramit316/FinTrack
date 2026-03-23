@@ -9,10 +9,17 @@
 
 .header {
   text-align: center;
-  padding: 24px 16px;
 }
 
 .header h1 {
+  margin: 0;
+  padding: 5px 0 0 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.header h2 {
   margin: 0;
   padding: 5px 0 0 0;
   font-size: 2.2rem;
@@ -111,11 +118,92 @@
 
 .transaction,
 .category {
-  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
   min-height: 0;
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 18px;
   padding: 20px;
   box-sizing: border-box;
+  align-items: center;
 }
+
+.transaction hr {
+  width: 100%;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  width: 100%;
+  padding: 20px;
+
+  box-sizing: border-box;
+}
+
+.fields input {
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#title, #date {
+  grid-column: span 2;
+}
+
+button {
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  border-radius: 10px;
+  background-color: #5ca8ff;
+  color: #fdfdfd;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #6cb2ff;
+  transform: translateY(-2px);
+}
+
+.bottom-section{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-bar{
+  display: flex;
+  border: 1px solid black;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+
+.recent-transaction{
+  display: flex;
+  flex-direction: column;
+  border:  1px solid black;
+}
+
+.recent-transaction h3{
+  margin: 0;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+}
+

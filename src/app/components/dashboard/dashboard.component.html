@@ -33,10 +33,113 @@
   <div class="main-content">
     <div class="transaction">
       <h2>Add New Transaction</h2>
+      <hr>
+
+      <div class="fields">
+        <input type="text" id="title" placeholder="Title">
+        <input type="number" id="amount" placeholder="Amount">
+        <input type="number" id="amount" placeholder="Type">
+        <input type="number" id="amount" placeholder="Income">
+        <input type="text" id="category" placeholder="Category">
+        <input type="date" id="date" placeholder="Date">
+      </div>
+
+      <button>SUBMIT</button>
     </div>
 
     <div class="category">
       <h2>Expense By Category</h2>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="search-bar">
+      <search></search>
+      <input>
+      <select>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+      </select>
+
+      <select>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+      </select>
+
+      <select>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+        <option value="">--Select Category--</option>
+      </select>
+      <button>Reset</button>
+    </div>
+
+    <div class="recent-transaction">
+      <h3>Recent Transactions</h3>
+      <hr>
+      <table border="1" cellspacing="0" cellpadding="8">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>2026-03-23</td>
+          <td>Salary</td>
+          <td>Income</td>
+          <td>Credit</td>
+          <td>$2,500</td>
+          <td>
+            <button>Edit</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2026-03-22</td>
+          <td>Groceries</td>
+          <td>Food</td>
+          <td>Debit</td>
+          <td>$150</td>
+          <td>
+            <button>Edit</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2026-03-21</td>
+          <td>Internet Bill</td>
+          <td>Utilities</td>
+          <td>Debit</td>
+          <td>$60</td>
+          <td>
+            <button>Edit</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2026-03-20</td>
+          <td>Freelance Project</td>
+          <td>Income</td>
+          <td>Credit</td>
+          <td>$800</td>
+          <td>
+            <button>Edit</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
