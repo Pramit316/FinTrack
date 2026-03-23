@@ -1,0 +1,121 @@
+.dashboard-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+  gap: 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.header h1 {
+  margin: 0;
+  padding: 5px 0 0 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.header p {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.dashboard-top {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+  flex: 1 1 250px;
+  min-width: 220px;
+  padding: 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+.card-icon {
+  font-size: clamp(32px, 4vw, 50px);
+  flex-shrink: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-content h1,
+.card-content h2 {
+  margin: 0;
+}
+
+.card-content h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.card-content h1 {
+  margin-top: 6px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.card.balance {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.card.income {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+}
+
+.card.expense {
+  background: linear-gradient(135deg, #e65b6f, #dd2b2b);
+  color: white;
+}
+
+.main-content {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 20px;
+  min-height: 0;
+}
+
+.transaction,
+.category {
+  flex: 1 1 0;
+  min-height: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px;
+  box-sizing: border-box;
+}
