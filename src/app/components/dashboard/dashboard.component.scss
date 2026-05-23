@@ -389,91 +389,136 @@ button {
 /* Recent Transaction */
 .recent-transaction {
   padding: 24px;
+  overflow: hidden;
 }
 
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
+  padding-bottom: 4px;
 }
 
+/* Modern Table */
 table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 10px;
+  border-spacing: 0 12px;
   font-size: 0.88rem;
 }
 
 thead th {
-  padding: 0 16px 10px;
+  padding: 0 18px 10px;
   text-align: left;
   color: #64748b;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
+/* Do not scale the row itself */
 tbody tr {
-  background: #ffffff;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
-  transition: 0.2s ease;
+  position: relative;
 }
 
-tbody tr:hover {
-  transform: scale(1.01);
-  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
-}
-
+/* Each td becomes part of a clean card row */
 tbody td {
-  padding: 16px;
+  position: relative;
+  padding: 18px;
   color: #334155;
+  background: #ffffff;
   border-top: 1px solid #eef2f7;
   border-bottom: 1px solid #eef2f7;
+  transition:
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease,
+    border-color 0.22s ease;
 }
 
+/* Rounded left side */
 tbody td:first-child {
   border-left: 1px solid #eef2f7;
-  border-radius: 18px 0 0 18px;
+  border-radius: 20px 0 0 20px;
   color: #64748b;
-  font-weight: 600;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
+/* Rounded right side */
 tbody td:last-child {
   border-right: 1px solid #eef2f7;
-  border-radius: 0 18px 18px 0;
+  border-radius: 0 20px 20px 0;
 }
 
+/* Better hover effect: move the cells, not the whole row */
+tbody tr:hover td {
+  background: #f8fafc;
+  border-color: #dbeafe;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* Remove internal shadow overlap */
+tbody tr:hover td:not(:first-child):not(:last-child) {
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.04);
+}
+
+/* Left accent line on hover */
+tbody td:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 999px;
+  background: transparent;
+  transition: 0.22s ease;
+}
+
+tbody tr:hover td:first-child::before {
+  background: linear-gradient(180deg, #6366f1, #2563eb);
+}
+
+/* Transaction text */
 .transaction-info h3 {
   margin: 0;
   font-size: 0.95rem;
   color: #0f172a;
   font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .transaction-info p {
-  margin: 5px 0 0;
+  margin: 6px 0 0;
   color: #64748b;
   font-size: 0.8rem;
+  line-height: 1.4;
 }
 
+/* Category chip */
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 7px 12px;
+  padding: 8px 13px;
   border-radius: 999px;
   background: #f1f5f9;
   color: #475569;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: capitalize;
+  border: 1px solid #e2e8f0;
 }
 
+/* Type Badge */
 .type-badge {
   display: inline-flex;
   align-items: center;
-  padding: 7px 12px;
+  padding: 8px 13px;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: capitalize;
 }
@@ -481,32 +526,39 @@ tbody td:last-child {
 .income-badge {
   background: rgba(16, 185, 129, 0.12);
   color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.22);
 }
 
 .expense-badge {
   background: rgba(244, 63, 94, 0.12);
   color: #be123c;
+  border: 1px solid rgba(244, 63, 94, 0.22);
 }
 
 .amount {
-  font-weight: 800;
+  font-weight: 900;
   color: #020617;
+  white-space: nowrap;
 }
 
+/* Delete button */
 .delete-btn {
   border: none;
-  padding: 9px 13px;
-  border-radius: 12px;
+  padding: 9px 14px;
+  border-radius: 13px;
   background: rgba(244, 63, 94, 0.1);
   color: #be123c;
+  font-size: 0.78rem;
   font-weight: 800;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.22s ease;
 }
 
 .delete-btn:hover {
   background: #e11d48;
   color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(225, 29, 72, 0.25);
 }
 
 /* Responsive */
