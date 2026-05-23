@@ -1,5 +1,36 @@
 # Fintrack
 
+A simple finance tracking web application built to manage personal income and expenses. The application allows users to add transactions, view total income, total expense, and current balance, and keep track of recent financial activity in one place.
+
+## Features
+
+- Add income and expense transactions
+- View total balance
+- View total income and total expense
+- Select payment method, category, and transaction type
+- Add transaction date and description
+- View recent transactions in a table
+- Reset current balance
+- Basic search and filtering layout
+
+## Tech Stack
+
+- Angular
+- TypeScript
+- HTML
+- CSS
+
+## Project Purpose
+
+This project was created as a learning project to improve frontend development skills using Angular. It focuses on form handling, component-based UI development, transaction management, and building a clean dashboard-style user interface.
+
+## How to Run the Project
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
 
 ## Development server
