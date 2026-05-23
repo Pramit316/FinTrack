@@ -88,3 +88,24 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Current Status
+
+This project is still under development. More features, improvements, and backend integration may be added later.
+
+Future Improvements
+Add delete and edit functionality
+Add real search and filtering
+Add charts and reports
+Add monthly summaries
+Store data permanently using backend or local storage
+Improve mobile responsiveness
+Add authentication
+Author
+
+Pramit
+
+License
+
+This project is for learning purposes.
