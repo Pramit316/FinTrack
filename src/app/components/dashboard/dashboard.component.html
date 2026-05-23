@@ -1,127 +1,233 @@
 <div class="dashboard-layout">
+
+  <!-- Header -->
   <div class="header">
-    <h1>Finance Tracker</h1>
-    <p>Track your income and expenses in one place</p>
+    <div>
+      <span class="eyebrow">Personal Finance Dashboard</span>
+      <h1>Finance Tracker</h1>
+      <p>Track your income, expenses and balance in one clean workspace.</p>
+    </div>
+
+    <div class="header-badge">
+      <span>💼</span>
+      <p>Smart Budgeting</p>
+    </div>
   </div>
 
+  <!-- Top Cards -->
   <div class="dashboard-top">
     <div class="card balance">
-      <h1 class="card-icon">💵</h1>
+      <div class="card-icon">💵</div>
       <section class="card-content">
-        <h2>Total Balance</h2>
-        <h1>$2,450</h1>
+        <p>Total Balance</p>
+        <h1>Rs. {{ totalBalance }}</h1>
       </section>
     </div>
 
     <div class="card income">
-      <h1 class="card-icon">⬆️</h1>
+      <div class="card-icon">↗</div>
       <section class="card-content">
-        <h2>Total Income</h2>
-        <h1>$2,450</h1>
+        <p>Total Income</p>
+        <h1>Rs. {{ totalIncome }}</h1>
       </section>
     </div>
 
     <div class="card expense">
-      <h1 class="card-icon">⬇️</h1>
+      <div class="card-icon">↘</div>
       <section class="card-content">
-        <h2>Total Expense</h2>
-        <h1>$2,450</h1>
+        <p>Total Expense</p>
+        <h1>Rs. {{ totalExpense }}</h1>
       </section>
     </div>
   </div>
 
+  <!-- Main Content -->
   <div class="main-content">
-    <div class="transaction">
-      <h2>Add New Transaction</h2>
-      <hr>
+
+    <!-- Left Form Section -->
+    <div class="transaction panel">
+      <div class="section-heading">
+        <div>
+          <h2>Add New Transaction</h2>
+          <p>Record income or expense details.</p>
+        </div>
+      </div>
 
       <form class="fields" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-        <input type="text" id="title" placeholder="Title" formControlName="title">
-        <input type="number" id="amount" placeholder="Amount" formControlName="amount">
-        <select formControlName="paymentMethod">
-          <option value="">Select Type</option>
-          <option value="cash">Cash</option>
-          <option value="mobile banking">Mobile Banking</option>
-          <option value="esewa">Esewa</option>
-          <option value="other">Other</option>
-        </select>
 
-        <select formControlName="transactionType">
-          <option value="income"> Income </option>
-          <option value="expense"> Expense </option>
-        </select>
+        <div class="form-group full">
+          <label>Title</label>
+          <input type="text" placeholder="Example: Salary, Coffee, Rent" formControlName="title">
+        </div>
 
-        <select formControlName="category">
-          <option value=""> Select Category </option>
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="number" placeholder="Enter amount" formControlName="amount">
+        </div>
+
+        <div class="form-group">
+          <label>Payment Method</label>
+          <select formControlName="paymentMethod">
+            <option value="">Select method</option>
+            <option value="cash">Cash</option>
+            <option value="mobile banking">Mobile Banking</option>
+            <option value="esewa">Esewa</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Transaction Type</label>
+          <select formControlName="transactionType">
+            <option value="">Select type</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select formControlName="category">
+            <option value="">Select category</option>
+            <option value="food">Food</option>
+            <option value="travel">Travel</option>
+            <option value="shopping">Shopping</option>
+            <option value="bills">Bills</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Date</label>
+          <input type="date" formControlName="date">
+        </div>
+
+        <div class="form-group full">
+          <label>Description</label>
+          <input type="text" placeholder="Short note about this transaction" formControlName="description">
+        </div>
+
+        <button type="submit" class="primary-btn">Add Transaction</button>
+      </form>
+
+      <!-- New Balance -->
+      <div class="new-balance">
+        <div class="section-heading small">
+          <div>
+            <h2>Reset Balance</h2>
+            <p>Use this only when you want to manually reset your total balance.</p>
+          </div>
+        </div>
+
+        <form class="fields" (ngSubmit)="newBalance()" [formGroup]="newBalanceForm">
+          <div class="form-group full">
+            <label>New Balance</label>
+            <input id="balance" type="number" placeholder="Enter new balance" formControlName="balance">
+            <small>This will reset your current total balance.</small>
+          </div>
+
+          <button type="submit" class="danger-btn">Reset Balance</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="bottom-section">
+
+      <!-- Search -->
+      <div class="search-bar panel">
+        <div class="search-input">
+          <span>🔍</span>
+          <input type="search" placeholder="Search transactions...">
+        </div>
+
+        <select>
+          <option value="">Category</option>
           <option value="food">Food</option>
           <option value="travel">Travel</option>
           <option value="shopping">Shopping</option>
           <option value="bills">Bills</option>
           <option value="others">Others</option>
         </select>
-        <input type="date" id="date" placeholder="Date" formControlName="date">
-        <input type="text" id="description"  placeholder="Description if any..." formControlName="desctiption">
-        <button type="submit">SUBMIT</button>
-      </form>
 
-    </div>
-
-    <div class="bottom-section">
-      <div class="search-bar">
-        <input type="search" placeholder="search">
         <select>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
+          <option value="">Type</option>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
         </select>
 
         <select>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
+          <option value="">Method</option>
+          <option value="cash">Cash</option>
+          <option value="mobile banking">Mobile Banking</option>
+          <option value="esewa">Esewa</option>
+          <option value="other">Other</option>
         </select>
 
-        <select>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-          <option value="">--Select Category--</option>
-        </select>
-        <button>Reset</button>
+        <button type="button" class="reset-btn">Reset</button>
       </div>
 
-      <div class="recent-transaction">
-        <h3>Recent Transactions</h3>
-        <hr>
-        <table border="1" cellspacing="0" cellpadding="8">
-          <thead>
-          <tr>
-            <th>Date</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-            @for (item of transactions; track item.id) {
-              <tr>
-                <td>{{ item.date }}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ item.category }}</td>
-                <td>{{ item.transactionType }}</td>
-                <td>{{ item.amount }}</td>
-                <td>
-                  delete
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
+      <!-- Table -->
+      <div class="recent-transaction panel">
+        <div class="section-heading">
+          <div>
+            <h2>Recent Transactions</h2>
+            <p>Your latest income and expense records.</p>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Transaction</th>
+              <th>Category</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+              @for (item of transactions; track item.id) {
+                <tr>
+                  <td>{{ item.date }}</td>
+
+                  <td>
+                    <div class="transaction-info">
+                      <h3>{{ item.title }}</h3>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="chip">{{ item.category }}</span>
+                  </td>
+
+                  <td>
+                    <span
+                      class="type-badge"
+                      [class.income-badge]="item.transactionType === 'income'"
+                      [class.expense-badge]="item.transactionType === 'expense'">
+                      {{ item.transactionType }}
+                    </span>
+                  </td>
+
+                  <td class="amount">
+                    Rs. {{ item.amount }}
+                  </td>
+
+                  <td>
+                    <button type="button" class="delete-btn">Delete</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </div>
   </div>
 </div>

@@ -6,5 +6,5 @@ export interface Transaction {
   paymentMethod: string,
   category: string
   date: string,
-  desctiption: string
+  description: string
 }
