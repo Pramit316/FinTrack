@@ -23,6 +23,10 @@
     </div>
   </header>
 
+  @if (errorMessage) {
+    <div class="alert-banner" role="alert">{{ errorMessage }}</div>
+  }
+
   <section class="dashboard-top" aria-label="Summary">
     <article class="card balance">
       <div class="card-icon" aria-hidden="true">
@@ -126,32 +130,13 @@
           <input id="description" type="text" placeholder="Short note (optional)" formControlName="description">
         </div>
 
-        <button type="submit" class="primary-btn">
+        <button type="submit" class="primary-btn" [disabled]="isSubmitting">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <path d="M12 5v14M5 12h14"/>
           </svg>
-          Add Transaction
+          {{ isSubmitting ? 'Saving…' : 'Add Transaction' }}
         </button>
       </form>
-
-      <div class="new-balance">
-        <div class="section-heading small">
-          <div>
-            <h2>Reset Balance</h2>
-            <p>Manually set your total balance when needed.</p>
-          </div>
-        </div>
-
-        <form class="fields" (ngSubmit)="newBalance()" [formGroup]="newBalanceForm">
-          <div class="form-group full">
-            <label for="balance">New Balance</label>
-            <input id="balance" type="number" placeholder="Enter new balance" formControlName="balance">
-            <small>This replaces your current total balance.</small>
-          </div>
-
-          <button type="submit" class="danger-btn">Reset Balance</button>
-        </form>
-      </div>
     </aside>
 
     <div class="bottom-section">
@@ -162,10 +147,20 @@
             <circle cx="11" cy="11" r="8"/>
             <path d="m21 21-4.35-4.35"/>
           </svg>
-          <input type="search" placeholder="Search transactions…" aria-label="Search transactions">
+          <input
+            type="search"
+            placeholder="Search transactions…"
+            aria-label="Search transactions"
+            [(ngModel)]="searchQuery"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onClientFilterChange()">
         </div>
 
-        <select aria-label="Filter by category">
+        <select
+          aria-label="Filter by category"
+          [(ngModel)]="categoryFilter"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="onClientFilterChange()">
           <option value="">Category</option>
           <option value="food">Food</option>
           <option value="travel">Travel</option>
@@ -174,13 +169,21 @@
           <option value="others">Others</option>
         </select>
 
-        <select aria-label="Filter by type">
+        <select
+          aria-label="Filter by type"
+          [(ngModel)]="typeFilter"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="onTypeFilterChange()">
           <option value="">Type</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </select>
 
-        <select aria-label="Filter by payment method">
+        <select
+          aria-label="Filter by payment method"
+          [(ngModel)]="methodFilter"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="onClientFilterChange()">
           <option value="">Method</option>
           <option value="cash">Cash</option>
           <option value="mobile banking">Mobile Banking</option>
@@ -188,7 +191,7 @@
           <option value="other">Other</option>
         </select>
 
-        <button type="button" class="reset-btn">Reset filters</button>
+        <button type="button" class="reset-btn" (click)="resetFilters()">Reset filters</button>
       </div>
 
       <section class="recent-transaction panel">
@@ -197,12 +200,16 @@
             <h2>Recent Transactions</h2>
             <p>Your latest income and expense records.</p>
           </div>
-          @if (transactions.length > 0) {
-            <span class="count-pill">{{ transactions.length }} total</span>
+          @if (filteredTransactions.length > 0) {
+            <span class="count-pill">{{ filteredTransactions.length }} shown</span>
           }
         </div>
 
-        @if (transactions.length === 0) {
+        @if (isLoading) {
+          <div class="empty-state">
+            <p>Loading transactions…</p>
+          </div>
+        } @else if (filteredTransactions.length === 0) {
           <div class="empty-state">
             <div class="empty-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -211,8 +218,14 @@
                 <path d="M9 12h6M9 16h4"/>
               </svg>
             </div>
-            <h3>No transactions yet</h3>
-            <p>Add your first income or expense using the form on the left.</p>
+            <h3>{{ transactions.length === 0 ? 'No transactions yet' : 'No matches' }}</h3>
+            <p>
+              @if (transactions.length === 0) {
+                Add your first income or expense using the form on the left.
+              } @else {
+                Try changing your search or filters.
+              }
+            </p>
           </div>
         } @else {
           <div class="table-wrapper">
@@ -229,7 +242,7 @@
               </thead>
 
               <tbody>
-                @for (item of transactions; track item.id) {
+                @for (item of filteredTransactions; track item.id) {
                   <tr>
                     <td data-label="Date">{{ item.date }}</td>
 
@@ -263,7 +276,11 @@
                     </td>
 
                     <td data-label="Actions">
-                      <button type="button" class="delete-btn" aria-label="Delete transaction">
+                      <button
+                        type="button"
+                        class="delete-btn"
+                        aria-label="Delete transaction"
+                        (click)="deleteTransaction(item.id)">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                           <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
                         </svg>

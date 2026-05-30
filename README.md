@@ -10,15 +10,16 @@ A simple finance tracking web application built to manage personal income and ex
 - Select payment method, category, and transaction type
 - Add transaction date and description
 - View recent transactions in a table
-- Reset current balance
-- Basic search and filtering layout
+- Delete transactions via the API
+- Summary cards loaded from `/api/report/summary`
+- Search and filter (type filter uses the report API)
 
 ## Tech Stack
 
-- Angular
+- Angular 19
+- Spring Boot REST API (`fintrack_api`)
 - TypeScript
-- HTML
-- CSS
+- SCSS
 
 ## Project Purpose
 
@@ -33,15 +34,44 @@ git clone <your-repository-url>
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
 
-## Development server
+## API connection
 
-To start a local development server, run:
+The frontend talks to these endpoints:
 
-```bash
-ng serve
+| Action | Method | Endpoint |
+|--------|--------|----------|
+| List transactions | GET | `/api/transactions/getAll` |
+| Add transaction | POST | `/api/transactions` |
+| Delete transaction | DELETE | `/api/transactions/delete/{id}` |
+| Financial summary | GET | `/api/report/summary` |
+| Filter by type | GET | `/api/report/{INCOME\|EXPENSE}` |
+
+### Run locally
+
+1. Start the Spring Boot API on **port 8080**.
+2. Enable CORS on the API (example):
+
+```java
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+            .allowedOrigins("http://localhost:4200")
+            .allowedMethods("GET", "POST", "DELETE", "OPTIONS");
+    }
+}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3. Start Angular (uses `proxy.conf.json` so `/api` calls are forwarded in dev):
+
+```bash
+npm start
+```
+
+Open `http://localhost:4200/`.
+
+Production builds call `http://localhost:8080` directly (see `src/environments/environment.ts`).
 
 ## Code scaffolding
 
@@ -92,16 +122,9 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Current Status
 
-This project is still under development. More features, improvements, and backend integration may be added later.
+Frontend is connected to the Spring Boot API for transactions, summary reports, and delete. Local storage is no longer used for transaction data.
 
-Future Improvements
-Add delete and edit functionality
-Add real search and filtering
-Add charts and reports
-Add monthly summaries
-Store data permanently using backend or local storage
-Improve mobile responsiveness
-Add authentication
+Future improvements: edit transactions, monthly report UI, charts, authentication.
 Author
 
 Pramit
