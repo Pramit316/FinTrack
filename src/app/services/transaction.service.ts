@@ -5,8 +5,9 @@ import { environment } from '../../environments/environment';
 import {
   CreateTransaction,
   Transaction,
+  TransactionApiDto,
   mapTransactionFromApi,
-  toApiTransactionType,
+  toApiTransaction,
 } from '../models/transaction.model';
 
 @Injectable({
@@ -19,24 +20,21 @@ export class TransactionService {
 
   getAll(): Observable<Transaction[]> {
     return this.http
-      .get<Transaction[]>(`${this.baseUrl}/getAll`)
+      .get<TransactionApiDto[]>(`${this.baseUrl}/getAll`)
       .pipe(map((items) => items.map(mapTransactionFromApi)));
   }
 
   getById(id: number): Observable<Transaction> {
     return this.http
-      .get<Transaction>(`${this.baseUrl}/get/${id}`)
+      .get<TransactionApiDto>(`${this.baseUrl}/get/${id}`)
       .pipe(map(mapTransactionFromApi));
   }
 
   add(transaction: CreateTransaction): Observable<Transaction> {
-    const payload = {
-      ...transaction,
-      transactionType: toApiTransactionType(String(transaction.transactionType)),
-    };
+    const payload = toApiTransaction(transaction);
 
     return this.http
-      .post<Transaction>(this.baseUrl, payload)
+      .post<TransactionApiDto>(this.baseUrl, payload)
       .pipe(map(mapTransactionFromApi));
   }
 

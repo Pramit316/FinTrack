@@ -6,9 +6,9 @@ export interface FinancialSummary {
 
 export function mapSummaryFromApi(data: Record<string, number>): FinancialSummary {
   return {
-    totalBalance: pickNumber(data, ['totalBalance', 'balance', 'netBalance']),
-    totalIncome: pickNumber(data, ['totalIncome', 'income']),
-    totalExpense: pickNumber(data, ['totalExpense', 'expense']),
+    totalBalance: pickNumber(data, ['Balance', 'balance', 'totalBalance', 'netBalance']),
+    totalIncome: pickNumber(data, ['Income', 'income', 'totalIncome']),
+    totalExpense: pickNumber(data, ['Expense', 'expense', 'totalExpense']),
   };
 }
 

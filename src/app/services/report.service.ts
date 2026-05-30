@@ -3,7 +3,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { FinancialSummary, mapSummaryFromApi } from '../models/financial-summary.model';
-import { Transaction, mapTransactionFromApi } from '../models/transaction.model';
+import {
+  Transaction,
+  TransactionApiDto,
+  mapTransactionFromApi,
+} from '../models/transaction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +35,7 @@ export class ReportService {
 
   filterByType(type: 'income' | 'expense'): Observable<Transaction[]> {
     return this.http
-      .get<Transaction[]>(`${this.baseUrl}/${type.toUpperCase()}`)
+      .get<TransactionApiDto[]>(`${this.baseUrl}/${type.toUpperCase()}`)
       .pipe(map((items) => items.map(mapTransactionFromApi)));
   }
 }
