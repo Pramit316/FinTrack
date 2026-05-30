@@ -1,51 +1,70 @@
 <div class="dashboard-layout">
 
-  <!-- Header -->
-  <div class="header">
-    <div>
-      <span class="eyebrow">Personal Finance Dashboard</span>
+  <header class="header">
+    <div class="header-copy">
+      <span class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        Personal Finance
+      </span>
       <h1>Finance Tracker</h1>
-      <p>Track your income, expenses and balance in one clean workspace.</p>
+      <p>Track income, expenses, and balance in one clean workspace.</p>
     </div>
 
     <div class="header-badge">
-      <span>💼</span>
-      <p>Smart Budgeting</p>
+      <div class="header-badge-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div>
+        <p class="badge-label">Smart Budgeting</p>
+        <p class="badge-meta">Stay on top of your money</p>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Top Cards -->
-  <div class="dashboard-top">
-    <div class="card balance">
-      <div class="card-icon">💵</div>
-      <section class="card-content">
+  <section class="dashboard-top" aria-label="Summary">
+    <article class="card balance">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <path d="M2 10h20"/>
+        </svg>
+      </div>
+      <div class="card-content">
         <p>Total Balance</p>
-        <h1>Rs. {{ totalBalance }}</h1>
-      </section>
-    </div>
+        <h2>Rs. {{ totalBalance | number:'1.0-0' }}</h2>
+      </div>
+    </article>
 
-    <div class="card income">
-      <div class="card-icon">↗</div>
-      <section class="card-content">
+    <article class="card income">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m18 15-6-6-6 6"/>
+        </svg>
+      </div>
+      <div class="card-content">
         <p>Total Income</p>
-        <h1>Rs. {{ totalIncome }}</h1>
-      </section>
-    </div>
+        <h2>Rs. {{ totalIncome | number:'1.0-0' }}</h2>
+      </div>
+    </article>
 
-    <div class="card expense">
-      <div class="card-icon">↘</div>
-      <section class="card-content">
+    <article class="card expense">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </div>
+      <div class="card-content">
         <p>Total Expense</p>
-        <h1>Rs. {{ totalExpense }}</h1>
-      </section>
-    </div>
-  </div>
+        <h2>Rs. {{ totalExpense | number:'1.0-0' }}</h2>
+      </div>
+    </article>
+  </section>
 
-  <!-- Main Content -->
   <div class="main-content">
 
-    <!-- Left Form Section -->
-    <div class="transaction panel">
+    <aside class="transaction panel">
       <div class="section-heading">
         <div>
           <h2>Add New Transaction</h2>
@@ -56,18 +75,18 @@
       <form class="fields" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group full">
-          <label>Title</label>
-          <input type="text" placeholder="Example: Salary, Coffee, Rent" formControlName="title">
+          <label for="title">Title</label>
+          <input id="title" type="text" placeholder="Salary, Coffee, Rent…" formControlName="title">
         </div>
 
         <div class="form-group">
-          <label>Amount</label>
-          <input type="number" placeholder="Enter amount" formControlName="amount">
+          <label for="amount">Amount</label>
+          <input id="amount" type="number" placeholder="0" formControlName="amount" min="0">
         </div>
 
         <div class="form-group">
-          <label>Payment Method</label>
-          <select formControlName="paymentMethod">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" formControlName="paymentMethod">
             <option value="">Select method</option>
             <option value="cash">Cash</option>
             <option value="mobile banking">Mobile Banking</option>
@@ -77,8 +96,8 @@
         </div>
 
         <div class="form-group">
-          <label>Transaction Type</label>
-          <select formControlName="transactionType">
+          <label for="transactionType">Transaction Type</label>
+          <select id="transactionType" formControlName="transactionType">
             <option value="">Select type</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
@@ -86,8 +105,8 @@
         </div>
 
         <div class="form-group">
-          <label>Category</label>
-          <select formControlName="category">
+          <label for="category">Category</label>
+          <select id="category" formControlName="category">
             <option value="">Select category</option>
             <option value="food">Food</option>
             <option value="travel">Travel</option>
@@ -98,50 +117,55 @@
         </div>
 
         <div class="form-group full">
-          <label>Date</label>
-          <input type="date" formControlName="date">
+          <label for="date">Date</label>
+          <input id="date" type="date" formControlName="date">
         </div>
 
         <div class="form-group full">
-          <label>Description</label>
-          <input type="text" placeholder="Short note about this transaction" formControlName="description">
+          <label for="description">Description</label>
+          <input id="description" type="text" placeholder="Short note (optional)" formControlName="description">
         </div>
 
-        <button type="submit" class="primary-btn">Add Transaction</button>
+        <button type="submit" class="primary-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Add Transaction
+        </button>
       </form>
 
-      <!-- New Balance -->
       <div class="new-balance">
         <div class="section-heading small">
           <div>
             <h2>Reset Balance</h2>
-            <p>Use this only when you want to manually reset your total balance.</p>
+            <p>Manually set your total balance when needed.</p>
           </div>
         </div>
 
         <form class="fields" (ngSubmit)="newBalance()" [formGroup]="newBalanceForm">
           <div class="form-group full">
-            <label>New Balance</label>
+            <label for="balance">New Balance</label>
             <input id="balance" type="number" placeholder="Enter new balance" formControlName="balance">
-            <small>This will reset your current total balance.</small>
+            <small>This replaces your current total balance.</small>
           </div>
 
           <button type="submit" class="danger-btn">Reset Balance</button>
         </form>
       </div>
-    </div>
+    </aside>
 
-    <!-- Right Section -->
     <div class="bottom-section">
 
-      <!-- Search -->
       <div class="search-bar panel">
         <div class="search-input">
-          <span>🔍</span>
-          <input type="search" placeholder="Search transactions...">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="search" placeholder="Search transactions…" aria-label="Search transactions">
         </div>
 
-        <select>
+        <select aria-label="Filter by category">
           <option value="">Category</option>
           <option value="food">Food</option>
           <option value="travel">Travel</option>
@@ -150,13 +174,13 @@
           <option value="others">Others</option>
         </select>
 
-        <select>
+        <select aria-label="Filter by type">
           <option value="">Type</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </select>
 
-        <select>
+        <select aria-label="Filter by payment method">
           <option value="">Method</option>
           <option value="cash">Cash</option>
           <option value="mobile banking">Mobile Banking</option>
@@ -164,69 +188,95 @@
           <option value="other">Other</option>
         </select>
 
-        <button type="button" class="reset-btn">Reset</button>
+        <button type="button" class="reset-btn">Reset filters</button>
       </div>
 
-      <!-- Table -->
-      <div class="recent-transaction panel">
+      <section class="recent-transaction panel">
         <div class="section-heading">
           <div>
             <h2>Recent Transactions</h2>
             <p>Your latest income and expense records.</p>
           </div>
+          @if (transactions.length > 0) {
+            <span class="count-pill">{{ transactions.length }} total</span>
+          }
         </div>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-            <tr>
-              <th>Date</th>
-              <th>Transaction</th>
-              <th>Category</th>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Actions</th>
-            </tr>
-            </thead>
+        @if (transactions.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                <rect x="9" y="3" width="6" height="4" rx="1"/>
+                <path d="M9 12h6M9 16h4"/>
+              </svg>
+            </div>
+            <h3>No transactions yet</h3>
+            <p>Add your first income or expense using the form on the left.</p>
+          </div>
+        } @else {
+          <div class="table-wrapper">
+            <table>
+              <thead>
+              <tr>
+                <th>Date</th>
+                <th>Transaction</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
 
-            <tbody>
-              @for (item of transactions; track item.id) {
-                <tr>
-                  <td>{{ item.date }}</td>
+              <tbody>
+                @for (item of transactions; track item.id) {
+                  <tr>
+                    <td data-label="Date">{{ item.date }}</td>
 
-                  <td>
-                    <div class="transaction-info">
-                      <h3>{{ item.title }}</h3>
-                      <p>{{ item.description }}</p>
-                    </div>
-                  </td>
+                    <td data-label="Transaction">
+                      <div class="transaction-info">
+                        <h3>{{ item.title }}</h3>
+                        @if (item.description) {
+                          <p>{{ item.description }}</p>
+                        }
+                      </div>
+                    </td>
 
-                  <td>
-                    <span class="chip">{{ item.category }}</span>
-                  </td>
+                    <td data-label="Category">
+                      <span class="chip">{{ item.category || '—' }}</span>
+                    </td>
 
-                  <td>
-                    <span
-                      class="type-badge"
-                      [class.income-badge]="item.transactionType === 'income'"
-                      [class.expense-badge]="item.transactionType === 'expense'">
-                      {{ item.transactionType }}
-                    </span>
-                  </td>
+                    <td data-label="Type">
+                      <span
+                        class="type-badge"
+                        [class.income-badge]="item.transactionType === 'income'"
+                        [class.expense-badge]="item.transactionType === 'expense'">
+                        {{ item.transactionType }}
+                      </span>
+                    </td>
 
-                  <td class="amount">
-                    Rs. {{ item.amount }}
-                  </td>
+                    <td class="amount" data-label="Amount"
+                        [class.amount-income]="item.transactionType === 'income'"
+                        [class.amount-expense]="item.transactionType === 'expense'">
+                      @if (item.transactionType === 'income') { + } @else { − }
+                      Rs. {{ item.amount | number:'1.0-0' }}
+                    </td>
 
-                  <td>
-                    <button type="button" class="delete-btn">Delete</button>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      </div>
+                    <td data-label="Actions">
+                      <button type="button" class="delete-btn" aria-label="Delete transaction">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                          <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
+                        </svg>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </section>
 
     </div>
   </div>
