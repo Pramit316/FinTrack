@@ -1,4 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
+import {DecimalPipe} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Transaction} from '../../Modal/Transaction';
 import {TransactionService} from '../../services/transaction.service';
@@ -7,7 +8,8 @@ import {TransactionService} from '../../services/transaction.service';
   selector: 'app-dashboard',
   imports: [
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DecimalPipe
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
