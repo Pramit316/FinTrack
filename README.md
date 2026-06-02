@@ -1,134 +1,127 @@
-# Fintrack
+# FinTrack Frontend
 
-A simple finance tracking web application built to manage personal income and expenses. The application allows users to add transactions, view total income, total expense, and current balance, and keep track of recent financial activity in one place.
+FinTrack is a simple personal finance tracking web application built with Angular. It allows users to record income and expense transactions, view financial summaries, search/filter transactions, and manage recent financial activity through a clean dashboard-style interface.
+
+This repository contains the **frontend application**. The backend is built separately using Spring Boot.
 
 ## Features
 
-- Add income and expense transactions
-- View total balance
-- View total income and total expense
-- Select payment method, category, and transaction type
-- Add transaction date and description
-- View recent transactions in a table
-- Delete transactions via the API
-- Summary cards loaded from `/api/report/summary`
-- Search and filter (type filter uses the report API)
+* Add income and expense transactions
+* View total balance, total income, and total expense
+* Select transaction type, category, payment method, date, and description
+* View recent transactions in a table
+* Search and filter transactions
+* Delete transactions using the backend API
+* Display summary data from the report API
 
 ## Tech Stack
 
-- Angular 19
-- Spring Boot REST API (`fintrack_api`)
-- TypeScript
-- SCSS
+* Angular 19
+* TypeScript
+* SCSS
+* Spring Boot REST API backend
 
-## Project Purpose
+## Backend Repository
 
-This project was created as a learning project to improve frontend development skills using Angular. It focuses on form handling, component-based UI development, transaction management, and building a clean dashboard-style user interface.
+This frontend connects to the FinTrack Spring Boot backend API.
 
-## How to Run the Project
+Backend repository:
 
-Clone the repository:
-
-```bash
-git clone <your-repository-url>
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
-
-## API connection
-
-The frontend talks to these endpoints:
-
-| Action | Method | Endpoint |
-|--------|--------|----------|
-| List transactions | GET | `/api/transactions/getAll` |
-| Add transaction | POST | `/api/transactions` |
-| Delete transaction | DELETE | `/api/transactions/delete/{id}` |
-| Financial summary | GET | `/api/report/summary` |
-| Filter by type | GET | `/api/report/{INCOME\|EXPENSE}` |
-
-### Run locally
-
-1. Start the Spring Boot API on **port 8080**.
-2. Enable CORS on the API (example):
-
-```java
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
-            .allowedOrigins("http://localhost:4200")
-            .allowedMethods("GET", "POST", "DELETE", "OPTIONS");
-    }
-}
+```text
+https://github.com/Pramit316/FinTrack_API
 ```
 
-3. Start Angular (uses `proxy.conf.json` so `/api` calls are forwarded in dev):
+Make sure the backend is running before starting the frontend.
+
+## API Endpoints Used
+
+| Action                | Method | Endpoint                        |
+| --------------------- | ------ | ------------------------------- |
+| Get all transactions  | GET    | `/api/transactions/getAll`      |
+| Add transaction       | POST   | `/api/transactions`             |
+| Delete transaction    | DELETE | `/api/transactions/delete/{id}` |
+| Get financial summary | GET    | `/api/report/summary`           |
+| Filter by type        | GET    | `/api/report/{INCOME\|EXPENSE}` |
+
+## How to Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Pramit316/FinTrack.git
+cd fintrack
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the backend
+
+Start the Spring Boot backend on:
+
+```text
+http://localhost:8080
+```
+
+The frontend expects the backend API to be available on port `8080`.
+
+### 4. Start the Angular frontend
 
 ```bash
 npm start
 ```
 
-Open `http://localhost:4200/`.
-
-Production builds call `http://localhost:8080` directly (see `src/environments/environment.ts`).
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+or:
 
 ```bash
-ng generate component component-name
+ng serve
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Then open:
 
-```bash
-ng generate --help
+```text
+http://localhost:4200
 ```
 
-## Building
+## API Connection
 
-To build the project run:
+During local development, the Angular app uses `proxy.conf.json` so that `/api` requests are forwarded to the Spring Boot backend.
+
+For production builds, the API URL is configured in:
+
+```text
+src/environments/environment.ts
+```
+
+## Build
+
+To build the Angular project, run:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
+The compiled output will be generated inside the `dist/` folder.
 
 ## Current Status
 
-Frontend is connected to the Spring Boot API for transactions, summary reports, and delete. Local storage is no longer used for transaction data.
+The frontend is connected to the Spring Boot backend for transaction management, summary reports, filtering, and delete operations. Local storage is no longer used for transaction data.
 
-Future improvements: edit transactions, monthly report UI, charts, authentication.
-Author
+## Future Improvements
+
+* Edit transaction feature
+* Monthly report UI
+* Charts and visual reports
+* User authentication
+* Better error handling and loading states
+
+## Author
 
 Pramit
 
-License
+## License
 
-This project is for learning purposes.
+This project is created for learning purposes.
